@@ -20,6 +20,12 @@
 <body>
     <header>
         <nav>
+            <?php // CLARISSE BEGIN 
+                // Lien vers la page de monitoring si on est connecté.
+                if (isset($_SESSION['user'])) {
+                    echo '<a href="index.php?action=monitoring">Monitoring</a>';
+                }
+            // CLARISSE END ?> 
             <a href="index.php">Articles</a>
             <a href="index.php?action=apropos">À propos</a>
             <?php 

@@ -328,6 +328,24 @@ a.info {
     width: 200px;
 }
 
+.articleLine .date {
+    font-weight: bold;
+    min-width: 250px;
+    width: 250px;
+}
+
+.articleLine .views {
+    font-weight: bold;
+    min-width: 150px;
+    width: 150px;
+}
+
+.articleLine .comments {
+    font-weight: bold;
+    min-width: 150px;
+    width: 150px;
+}
+
 .articleLine .content {
     flex-grow: 1;
 }
@@ -336,6 +354,62 @@ a.info {
     padding: 20px;
     border: 1px solid var(--backgroundColor);
 }
+
+/* CLARISSE BEGIN */
+
+/* Comments table styling */
+.commentsTable {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* ensure columns follow col widths */
+    background: white;
+    border: 1px solid rgba(0,0,0,0.08);
+}
+.commentsTable thead th {
+    background: var(--commentPaleColor);
+    color: white;
+    text-align: left;
+    padding: 12px;
+}
+.commentsTable th, .commentsTable td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    vertical-align: middle;
+}
+.commentsTable tbody tr:last-child td {
+    border-bottom: none;
+}
+.commentsTable td:first-child, .commentsTable th:first-child {
+    text-align: center;
+}
+.commentsTable tbody > tr:nth-of-type(odd) {
+    /* odd rows: default pale green */
+    background: var(--commentPaleColor);
+    color: white;
+}
+.commentsTable tbody > tr:nth-of-type(even) {
+    /* even rows: alternate mustard */
+    background: #d79922;
+    color: white;
+}
+.commentsTable td:nth-child(2) {
+    color: var(--dateColor);
+    font-size: 14px;
+}
+.commentsTable td:nth-child(3) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.commentsTable .commentActions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.commentsTable .submit {
+    margin: 0;
+}
+
+/* CLARISSE END */
 
 /** 
  * Footer global de la page.

@@ -44,6 +44,13 @@ try {
             $adminController->showAdmin();
             break;
 
+        // CLARISSE BEGIN
+        case 'monitoring':
+            $adminController = new AdminController();
+            $adminController->showMonitoring();
+            break;
+        // CLARISSE END
+
         case 'connectionForm':
             $adminController = new AdminController();
             $adminController->displayConnectionForm();
@@ -73,6 +80,21 @@ try {
             $adminController = new AdminController();
             $adminController->deleteArticle();
             break;
+
+        // CLARISSE BEGIN
+        case 'showManageComments':
+            $adminController = new AdminController();
+            $adminController->showManageComments();
+            break;
+        case 'deleteComment':
+            $adminController = new AdminController();
+            $adminController->deleteComment();
+            break;
+        case 'deleteComments':
+            $adminController = new AdminController();
+            $adminController->deleteComments();
+            break;
+        // CLARISSE END
 
         default:
             throw new Exception("La page demandée n'existe pas.");
