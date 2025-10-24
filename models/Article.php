@@ -11,7 +11,7 @@
     private string $content = "";
     private ?DateTime $dateCreation = null;
     private ?DateTime $dateUpdate = null;
-    private ?int $vues = null;  
+    private ?int $views = null;
 
     /**
      * Setter pour l'id de l'utilisateur. 
@@ -135,18 +135,18 @@
      * Getter pour le nombre de vues.
      * @return int|null
      */
-    public function getVues() : ?int
+    public function getViews() : ?int
     {
-        return $this->vues;
+        return $this->views;
     }
 
     /**
      * Setter pour les vues.
-     * @param int $vues
+     * @param int $views
      */
-    public function setVues(int $vues) : void
+    public function setViews(int $views) : void
     {
-        $this->vues = $vues;
+        $this->views = $views;
     }
     
     // CLARISSE END

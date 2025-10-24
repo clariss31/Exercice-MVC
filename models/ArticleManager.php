@@ -101,7 +101,7 @@ class ArticleManager extends AbstractEntityManager
      */
     public function incrementArticleViews(int $id) : void
     {
-        $sql = "UPDATE article SET vues = IFNULL(vues, 0) + 1 WHERE id = :id";
+        $sql = "UPDATE article SET views = IFNULL(views, 0) + 1 WHERE id = :id";
         // $this->db est accessible ici, car le Manager gère la DB
         $this->db->query($sql, ['id' => $id]); 
     }

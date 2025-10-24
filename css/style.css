@@ -357,56 +357,174 @@ a.info {
 
 /* CLARISSE BEGIN */
 
-/* Comments table styling */
 .commentsTable {
     width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed; /* ensure columns follow col widths */
-    background: white;
-    border: 1px solid rgba(0,0,0,0.08);
+    border-spacing: 0;
+    table-layout: fixed; /* Layout fixe pour TOUS les tableaux admin */
+    border: none;
+    border-collapse: separate; 
 }
-.commentsTable thead th {
-    background: var(--commentPaleColor);
+
+/* --- Styles pour monitoring.php --- */
+.adminArticle .commentsTable .col-title { width: 250px; }
+.adminArticle .commentsTable .col-date { width: 150px; }
+.adminArticle .commentsTable .col-views { width: 150px; }
+.adminArticle .commentsTable .col-comments { width: 200px; }
+/* .col-actions prend le reste */
+
+
+/* --- MODIFIÉ: Styles pour manageComments.php --- */
+/* On repasse à des largeurs fixes pour que le layout:fixed fonctionne */
+.manageCommentsContainer .commentsTable .col-check { width: 60px; }
+.manageCommentsContainer .commentsTable .col-author { width: 180px; }
+.manageCommentsContainer .commentsTable .col-date-comment { width: 125px; }
+.manageCommentsContainer .commentsTable .col-actions-comment { width: 150px; }
+/* .col-content (colonne 4) prendra le reste de la largeur */
+
+/* SUPPRIMÉ: La règle "table-layout: auto;" a été retirée */
+
+
+.adminArticle .commentsTable thead th {
+    background: var(--headerColor);
     color: white;
     text-align: left;
-    padding: 12px;
+    padding: 20px;
+    position: relative;
+    border: 1px solid var(--backgroundColor);
 }
-.commentsTable th, .commentsTable td {
-    padding: 10px 12px;
-    border-bottom: 1px solid rgba(0,0,0,0.06);
+
+.adminArticle .commentsTable th,
+.adminArticle .commentsTable td {
+    padding: 20px;
+    border: 1px solid var(--backgroundColor);
     vertical-align: middle;
-}
-.commentsTable tbody tr:last-child td {
-    border-bottom: none;
-}
-.commentsTable td:first-child, .commentsTable th:first-child {
-    text-align: center;
-}
-.commentsTable tbody > tr:nth-of-type(odd) {
-    /* odd rows: default pale green */
     background: var(--commentPaleColor);
-    color: white;
+    /* AJOUT: Gère le débordement de texte (ex: commentaires longs) */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
-.commentsTable tbody > tr:nth-of-type(even) {
-    /* even rows: alternate mustard */
+
+/* Style pour monitoring.php (titre en gras) */
+.adminArticle .commentsTable td:first-child {
+    font-weight: bold;
+}
+
+.adminArticle .commentsTable tbody > tr:nth-of-type(even) {
     background: #d79922;
-    color: white;
 }
-.commentsTable td:nth-child(2) {
-    color: var(--dateColor);
-    font-size: 14px;
+.adminArticle .commentsTable tbody > tr:nth-of-type(even) th,
+.adminArticle .commentsTable tbody > tr:nth-of-type(even) td {
+    background: #d79922;
 }
-.commentsTable td:nth-child(3) {
+
+
+.adminArticle .commentsTable td:nth-child(3) {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.commentsTable .commentActions {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+.adminArticle .commentsTable .commentActions {
+    text-align: center;
 }
-.commentsTable .submit {
+
+.adminArticle .commentsTable .submit {
     margin: 0;
+}
+
+/* small textual label indicating the active sort order (croissant/décroissant) */
+.adminArticle .commentsTable .sortOrder {
+    color: #255e33;
+    font-size: 13px;
+    opacity: 0.95;
+    display: block;
+    margin-top: 4px;
+}
+
+/* Styles pour les flèches de tri */
+.adminArticle .commentsTable th .sortArrow {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.adminArticle .commentsTable th .sortArrow.active {
+    color: #255e33; /* Couleur active */
+}
+
+/* --- Styles spécifiques pour la page manageComments --- */
+.manageCommentsContainer .commentsTable td:first-child {
+    font-weight: normal; /* Annule le gras sur la colonne checkbox */
+    text-align: center;
+}
+.manageCommentsContainer .commentsTable th:first-child {
+    text-align: center;
+}
+.manageCommentsContainer .commentsTable td:nth-child(2) {
+    font-weight: bold; /* Met la colonne "Auteur" en gras */
+}
+
+/* Ajout du padding pour le bouton "Supprimer la sélection" */
+.manageCommentsContainer .bulk-actions {
+    margin-top: 0; /* La bordure du tableau gère l'espace */
+    padding: 20px;
+}
+
+/* Supprime le padding du formulaire admin sur la page manageComments */
+form.manageCommentsContainer {
+    padding: 0;
+}
+
+/* Style checkboxes */
+input[type="checkbox"] {
+    /* Cache la checkbox native */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    
+    /* Dimensions personnalisées */
+    width: 1.25em; /* ~20px */
+    height: 1.25em;
+    
+    /* Style par défaut (style admin unifié) */
+    background-color: transparent;
+    border: 2px solid white; /* Bordure blanche par défaut */
+    border-radius: 3px;
+    
+    /* Alignement et curseur */
+    vertical-align: middle;
+    cursor: pointer;
+    position: relative; /* Pour positionner la coche */
+    
+    /* Assure que la transition est douce */
+    transition: background-color 0.1s ease-in-out, border-color 0.1s ease-in-out;
+}
+
+/* Style de la checkbox cochée (s'applique partout) */
+input[type="checkbox"]:checked {
+    background-color: var(--commentColor);
+    border-color: var(--commentColor);
+}
+
+/* Affichage de la coche */
+input[type="checkbox"]::after {
+    content: '';
+    position: absolute;
+    display: none;
+    
+    /* Dimensions de la coche */
+    width: 0.25em;
+    height: 0.6em;
+    
+    /* Style de la coche */
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%) rotate(45deg);
+}
+
+/* Affichage de la coche quand la checkbox est cochée */
+input[type="checkbox"]:checked::after {
+    display: block;
 }
 
 /* CLARISSE END */

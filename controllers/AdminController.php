@@ -256,6 +256,8 @@ class AdminController {
         Utils::redirect('showManageComments', ['id' => $articleId]);
     }
 
+    // CLARISSE BEGIN
+
     /**
      * Affichage de la page de monitoring (liste des articles + stats).
      * @return void
@@ -269,7 +271,7 @@ class AdminController {
         $articles = $articleManager->getAllArticles();
 
         // Récupérer critères de tri depuis la requête
-        $sort = Utils::request('sort', null); // 'title'|'date'|'vues'|'comments'
+        $sort = Utils::request('sort', null); // 'title'|'date'|'views'|'comments'
         $order = Utils::request('order', 'asc'); // 'asc'|'desc'
 
         // Pré-calculer le nombre de commentaires par article pour tri si nécessaire
@@ -292,9 +294,9 @@ class AdminController {
                         $ta = ($da instanceof DateTime) ? $da->getTimestamp() : 0;
                         $tb = ($db instanceof DateTime) ? $db->getTimestamp() : 0;
                         return $dir * ($ta <=> $tb);
-                    case 'vues':
-                        $va = (int) $a->getVues();
-                        $vb = (int) $b->getVues();
+                    case 'views':
+                        $va = (int) $a->getViews();
+                        $vb = (int) $b->getViews();
                         return $dir * ($va <=> $vb);
                     case 'comments':
                         $ca = $commentCounts[$a->getId()] ?? 0;

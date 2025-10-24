@@ -7,14 +7,17 @@
  *      $content string : le contenu de la page. 
  */
 
+$cssFile = __DIR__ . '/../../css/style.css';
+$timestamp = filemtime($cssFile);
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emilie Forteroche</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style.css?v=<?=$timestamp?>">
 </head>
 
 <body>
