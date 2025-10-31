@@ -16,10 +16,3 @@
         <button class="submit"><?= $article->getId() == -1 ? "Ajouter" : "Modifier" ?></button>
     </div>
 </form>
-
-<script>
-
-    
-    
-
-</script>

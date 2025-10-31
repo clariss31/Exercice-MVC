@@ -58,7 +58,6 @@
         $this->content = $content;
     }
 
-    
     /**
      * Getter pour le contenu.
      * Retourne les $length premiers caractères du contenu.

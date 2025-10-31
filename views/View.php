@@ -10,7 +10,6 @@ class View
      */
     private string $title;
     
-    
     /**
      * Constructeur. 
      */

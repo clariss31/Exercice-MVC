@@ -1,4 +1,5 @@
-<?php // CLARISSE
+<?php
+    // CLARISSE
     /** * Affichage de la partie monitoring : liste des articles avec la date, nombre de vues, de commentaires et un bouton "gérer les commentaires" pour chacun. 
      * Et un formulaire pour ajouter un article. 
      */
@@ -7,18 +8,18 @@
 <h2>Monitoring des articles</h2>
 
 <?php
-    // Current sorting
+    // Préparer les variables pour les liens de tri
     $currentSort = $sort ?? null;
     $currentOrder = $order ?? 'asc';
 
-    // Helper to build sort links (toggle asc/desc) and show order label when active
+    // Gestion du tri avec flèches et labels
     function sort_link($field, $label, $currentSort, $currentOrder) {
         $order = 'asc';
-        $arrow = ' ▼'; // Default inactive arrow
+        $arrow = ' ▼';
         $arrowClass = 'sortArrow';
 
         if ($currentSort === $field) {
-            $arrowClass .= ' active'; // Add active class
+            $arrowClass .= ' active';
             if ($currentOrder === 'asc') {
                 $order = 'desc';
                 $arrow = ' ▲'; // Active, ascending
@@ -27,11 +28,11 @@
             }
         }
         
-        // Link with label and arrow span
+        // Construction du lien avec le label et la flèche
         $link = '<a class="sortLink" href="index.php?action=monitoring&sort=' . $field . '&order=' . $order . '">' 
                 . $label . '<span class="' . $arrowClass . '">' . $arrow . '</span></a>';
         
-        // The sortOrder label (croissant/décroissant)
+        // Label (croissant/décroissant)
         if ($currentSort === $field) {
             $orderLabel = $currentOrder === 'asc' ? 'croissant' : 'décroissant';
             $link .= '<span class="sortOrder"> ' . $orderLabel . '</span>';

@@ -193,6 +193,7 @@ class AdminController {
         $comments = $commentManager->getAllCommentsByArticleId($id);
 
         // CLARISSE BEGIN
+
         // On récupère l'article associé pour afficher son titre
         $articleManager = new ArticleManager();
         $article = $articleManager->getArticleById($id);
@@ -256,8 +257,6 @@ class AdminController {
         Utils::redirect('showManageComments', ['id' => $articleId]);
     }
 
-    // CLARISSE BEGIN
-
     /**
      * Affichage de la page de monitoring (liste des articles + stats).
      * @return void
@@ -317,5 +316,6 @@ class AdminController {
             'order' => $order
         ]);
     }
+    
     // CLARISSE END
 }
